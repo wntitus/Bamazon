@@ -24,8 +24,15 @@ let run = function() {
     }).then(function(answer) {
         if (answer.managerChoice === 'View Products for Sale') {
             connection.query('SELECT * FROM products', function(error, response) {
-                if(error) throw error;
+                if (error) throw error;
                 console.table(response);
+                run();
+            })
+        } else if (answer.managerChoice === 'View Low Inventory') {
+            connection.query('SELECT * FROM products WHERE stock_quantity<5', function(error, response) {
+                if (error) throw error;
+                console.table(response);
+                run();
             })
         }
     })
