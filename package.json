@@ -1,0 +1,29 @@
+{
+  "name": "bamazoncli",
+  "version": "1.0.0",
+  "description": "CLI for product tracking",
+  "main": "bamazonCustomer.js",
+  "dependencies": {
+    "inquirer": "^6.1.0",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wntitus/Bamazon.git"
+  },
+  "keywords": [
+    "management",
+    "store",
+    "cli"
+  ],
+  "author": "wntitus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wntitus/Bamazon/issues"
+  },
+  "homepage": "https://github.com/wntitus/Bamazon#readme"
+}
