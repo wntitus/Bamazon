@@ -49,7 +49,9 @@ let run = function() {
                 if (response[0].stock_quantity >= answers.custQuant) {
                     let newCount = response[0].stock_quantity - answers.custQuant;
                     let cost = answers.custQuant * response[0].price;
+                    let salesCost = response[0].product_sales + cost;
                     connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newCount, answers.custChoice]);
+                    connection.query("UPDATE products SET product_sales=? WHERE item_id=?", [salesCost, answers.custChoice]);
                     console.log("Product purchased!");
                     console.log("Total cost: " + cost);
                     choicePrompt();
