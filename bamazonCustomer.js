@@ -12,15 +12,18 @@ const connection = mysql.createConnection({
 
 let choicePrompt = function() {
     inquirer.prompt({
-        type : 'confirm',
+        type : 'list',
         name : 'contChoice',
         message : 'Continue or exit?',
-        default : true
+        choices : [
+            'Continue',
+            'Exit'
+        ]
     }).then(function(answer) {
-        if (answer.contChoice) {
+        if (answer.contChoice === 'Continue') {
             run();
         } else {
-            return;
+            process.exit();
         }
     })
 }
@@ -45,8 +48,10 @@ let run = function() {
                 if (error) throw error;
                 if (response[0].stock_quantity >= answers.custQuant) {
                     let newCount = response[0].stock_quantity - answers.custQuant;
+                    let cost = answers.custQuant * response[0].price;
                     connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newCount, answers.custChoice]);
                     console.log("Product purchased!");
+                    console.log("Total cost: " + cost);
                     choicePrompt();
                 } else {
                     console.log("Insufficient quantity!");
