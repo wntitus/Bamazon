@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
+const chalk = require('chalk');
 
 const connection = mysql.createConnection({
     host : 'localhost',
@@ -36,12 +37,12 @@ let run = function() {
             {
                 type : 'input',
                 name : 'custChoice',
-                message : 'Please enter the product ID you would like to purchase.'
+                message : chalk.blue('Please enter the product ID you would like to purchase.')
             },
             {
                 type : 'input',
                 name : 'custQuant',
-                message : 'Please enter the amount you would like to purchase.'
+                message : chalk.blue('Please enter the amount you would like to purchase.')
             }
         ]).then(function(answers) {
             connection.query("SELECT * FROM products WHERE item_id=?", [answers.custChoice], function(error, response) {
@@ -52,8 +53,8 @@ let run = function() {
                     let salesCost = response[0].product_sales + cost;
                     connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newCount, answers.custChoice]);
                     connection.query("UPDATE products SET product_sales=? WHERE item_id=?", [salesCost, answers.custChoice]);
-                    console.log("Product purchased!");
-                    console.log("Total cost: " + parseFloat(cost));
+                    console.log(chalk.red("Product purchased!"));
+                    console.log(chalk.red("Total cost: " + parseFloat(cost)));
                     choicePrompt();
                 } else {
                     console.log("Insufficient quantity!");
