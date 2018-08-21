@@ -14,3 +14,5 @@ The app uses the NPM packages
 
 * This is a demonstration of how the manager functionality works. You can view all the products for sale, view products that are low on inventory (currently < 5 ), add more quantity to the inventory for specific products, and add new products entirely.  
 ![Manager Demo](assets/managerdemo.gif)
+
+* The supervisor functionality is currently incomplete. The supervisor will be able to add departments and view product sales by department.  
