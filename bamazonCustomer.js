@@ -53,7 +53,7 @@ let run = function() {
                     connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newCount, answers.custChoice]);
                     connection.query("UPDATE products SET product_sales=? WHERE item_id=?", [salesCost, answers.custChoice]);
                     console.log("Product purchased!");
-                    console.log("Total cost: " + cost);
+                    console.log("Total cost: " + parseFloat(cost));
                     choicePrompt();
                 } else {
                     console.log("Insufficient quantity!");
